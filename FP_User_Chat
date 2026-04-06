@@ -1,120 +1,481 @@
-# USER REFERENCE DOCUMENT
-
-**Product:** Chat Smith AI
+Dưới đây là bản rút gọn và chỉnh sửa lại theo kiểu “internal product doc” – giữ nội dung chính, bỏ citation, cấu trúc rõ để dễ chia sẻ trong Confluence/Notion.
 
 ---
 
-## **1. User Segments**
+# Chat Smith AI – User Analysis Report
+---
 
-### **1.1 Persona Segments**
+## 2. User Segments
 
-* **Student**
+### 2.1 Cách xác định segment
+- Onboarding:
+  - Persona (ví dụ: Student, Office worker, Content creator, Other).
+  - Intended usage / domain interest (study, work, content, etc.).
+  - Value mode (quick answer vs detailed, v.v.).
+- Behavioral / plan segmentation:
+  - `is_premium` (free vs premium).
+  - Platform (iOS / Android / Web).
+  - Feature usage (Deep Research, Web Search, AI Art, voice, file upload…).
 
-  * Learning, research, summarization
-* **Office Worker**
+### 2.2 Segment A – Student
+**Description**
+- Người dùng là học sinh / sinh viên.
 
-  * Productivity, document understanding, synthesis
-* **Content Creator**
+**Key characteristics**
+- Thường chọn các nhu cầu: học tập, nghiên cứu, homework, language.
+- Thường chạy:
+  - Summarization / study guides.
+  - Academic writing support.
+  - Translation.
+- Dùng cả mobile lẫn web (tùy bối cảnh học).
 
-  * Image generation, content creation
+**Usage patterns**
+- Messages/user theo tuần ở mobile thường ~7–8 messages.
+- Rất nhạy với:
+  - File reading (PDF, lecture slides).
+  - Long-context cho nhiều câu hỏi liên tiếp trên cùng tài liệu.
+
+**Use cases**
+- Tóm tắt sách/lecture.
+- Giải bài tập kèm giải thích.
+- Chuẩn bị outline essay / report.
+- Luyện ngoại ngữ.
 
 ---
 
-### **1.2 Access Segments**
+### 2.3 Segment B – Office Worker
+**Description**
+- Knowledge workers: làm việc với email, meeting, report, research.
 
-* **Guest Users**
+**Key characteristics**
+- Tập trung vào:
+  - Email / writing assistants.
+  - Deep Research, Web Search (cần nguồn, citation).
+  - Task/meeting note structuring.
+- Ưa chuộng workflows dài, nhiều bước; quan trọng continuity giữa các lần vào lại.
 
-  * Trial usage (max 4 messages/session)
-  * Basic Q&A only
-  * No data persistence
+**Usage patterns**
+- Premium adoption cao hơn mức trung bình.
+- DAU/WAU ~0.16–0.26 (tùy tuần / nền tảng).
+- Sử dụng mạnh Deep Research / Web Search khi đã khám phá.
 
-* **Free Users**
-
-  * Core chat usage with limited quota
-  * Limited access to advanced features
-
-* **Premium Users**
-
-  * Full access to advanced features
-  * Higher usage limits
-
----
-
-## **2. Core User Goals**
-
-* Get fast answers / explanations
-* Summarize and understand content (text, link, file)
-* Perform deeper research (structured output, sources)
-* Generate and refine images
+**Use cases**
+- Soạn / trả lời email nhanh.
+- Tổng hợp research report, market analysis.
+- Tóm tắt meeting, tạo action list.
+- Chuẩn bị nội dung trình bày (slides, docs).
 
 ---
 
-## **3. Key User Behaviors**
+### 2.4 Segment C – Content Creator
+**Description**
+- Marketer, social media manager, freelancer sáng tạo.
 
-### **3.1 Entry & Activation**
+**Key characteristics**
+- Dùng nhiều:
+  - AI Art / AI Avatar.
+  - Social / marketing content assistants.
+  - Voice brainstorming.
 
-* Enter via landing page → start chat
-* Interact with suggested prompts
-* Send first message
+**Usage patterns**
+- AI Art/Avatar:
+  - Spike mạnh khi launch, trial cao.
+  - D3 retention thấp → novelty nhanh giảm nếu không có workflow bền.
+- Quan trọng:
+  - Khả năng edit, regenerate, giữ style nhất quán.
+  - Quản lý asset (bộ style, bộ creative).
 
-### **3.2 Engagement**
-
-* ~7–8 messages per user (weekly avg)
-* Core chat is main usage driver
-* Multi-modal usage exists:
-
-  * Image (vision)
-  * Voice
-
----
-
-## **4. Feature Usage Patterns**
-
-* **Core Chat:** highest usage
-* **Vision/Image:** strong adoption
-* **Voice:** moderate usage
-* **Advanced features (Deep Research, AI Art):**
-
-  * Used by smaller but more engaged users
-  * Typically gated by quota/premium
+**Use cases**
+- Idea generation (campaign ideas, post ideas).
+- Social captions cho từng platform.
+- Logo/poster/product visuals.
+- Content calendar khung ý tưởng.
 
 ---
 
-## **5. Key Frictions (System-Driven)**
+### 2.5 Long‑tail / Other
+**Description**
+- Job seeker, HR, cá nhân tối ưu productivity, health/wellness, v.v.
 
-* Guest limitations (quota, feature lock, no persistence)
-* Mode conflicts (file upload vs advanced modes)
-* File upload must complete before sending
-* Image upload requires consent step
-* Quota system differs across features
+**Key characteristics**
+- Xuất hiện qua:
+  - Onboarding interests.
+  - Sử dụng template / assistant chuyên biệt (CV, JD, planning,…).
+- Không phải driver chính của DAU nhưng có tiềm năng conversion nếu workflow rõ ràng.
 
----
+**Use cases**
+- CV, cover letter, interview prep.
+- JD, email HR.
+- Lịch trình cá nhân, habit, kế hoạch sức khỏe.
 
-## **6. User Types by Behavior**
-
-* **Casual Users**
-
-  * Use basic chat
-  * Low feature exploration
-
-* **Power Users**
-
-  * Use multi-modal features (image, voice, research)
-  * Engage in iterative workflows (e.g., image editing, deep research)
+**Data gap**
+- Chưa có synthesis chi tiết cho nhóm “Other”.
 
 ---
 
-## **7. Notes for Usage**
+## 3. User Goals & Jobs-To-Be-Done (JTBD)
 
-* This document reflects:
+### 3.1 Cross‑segment goals
+- **Nhanh và tiện**:
+  - Có câu trả lời / kết quả usable thật nhanh.
+- **Tiết kiệm thời gian việc lặp lại**:
+  - Email, report, tóm tắt, format.
+- **Cải thiện chất lượng output**:
+  - Viết hay hơn, rõ ràng hơn, chuyên nghiệp hơn.
+- **Khám phá ý tưởng mới**:
+  - Brainstorming, creative ideation.
+- **Học nhanh hơn**:
+  - Giải thích, ví dụ, tóm tắt.
+- **Giữ mọi thứ có hệ thống**:
+  - Notes, tasks, tổng hợp.
 
-  * **Observed behavior (analytics)**
-  * **System constraints (product design)**
+### 3.2 JTBD theo segment
 
-* Use this as:
+**Student**
+- Tôi cần:
+  - Hiểu bài / concept khó.
+  - Hoàn thành homework với giải thích.
+  - Tóm tắt tài liệu để ôn thi.
+  - Luyện ngôn ngữ.
 
-  * Baseline for product decisions
-  * Input for PRD / experiments
-  * Context for further user research
+**Office Worker**
+- Tôi cần:
+  - Giảm thời gian viết email / báo cáo.
+  - Biết “so what” từ research dài / nhiều nguồn.
+  - Có meeting notes + actions rõ ràng.
+  - Tổ chức dự án / tasks.
+
+**Content Creator**
+- Tôi cần:
+  - Nảy ý tưởng nội dung liên tục.
+  - Viết caption / copy theo giọng điệu nhất quán.
+  - Tạo / chỉnh sửa visual nhanh cho campaign.
+  - Tái sử dụng style / asset.
+
+### 3.3 “No data found”
+- Chưa có kho ticket/feedback thô để mapping “JTBD bị fail” theo persona.
+- JTBD detail cho nhóm “Other” còn thiếu.
 
 ---
+
+## 4. Key User Behaviors
+
+### 4.1 Entry points / first touch
+- Người dùng vào chat từ:
+  - Home shortcut / Chat tab.
+  - Nút “New Chat” từ history.
+  - Use-case tiles / suggestions trên main screen.
+  - Deep links từ notification / OS shortcuts.
+- Guest Mode:
+  - Cho phép dùng cơ bản không cần login.
+  - Advanced features bị khóa nhưng vẫn hiển thị để “show value”.
+
+### 4.2 First actions & activation
+- Onboarding completion rất cao (đặc biệt iOS).
+- Tuy nhiên:
+  - Có cohort **đã hoàn thành onboarding nhưng không gửi message đầu tiên**.
+  - Đã có notification riêng hướng vào nhóm “non-activated”.
+- Những gì người dùng hay làm trong first session:
+  - Tap vào suggestion / use-case tile.
+  - Gửi prompt đơn giản (Q&A hoặc test khả năng).
+  - Một số user thử AI Art / Deep Research ngay nếu nhìn thấy entry rõ ràng.
+
+### 4.3 Frequency & session patterns
+- Stickiness (DAU/WAU):
+  - ~0.16–0.26 trên từng nền tảng, tùy tuần.
+- Messages per user:
+  - Mobile thường trong khoảng 7–8 per user per tuần.
+- Pattern:
+  - Sau khi activated, người dùng có xu hướng multi-turn (không dừng ở 1 message).
+  - Power users phân bố nhiều ở productivity & research workflows.
+
+### 4.4 Feature usage
+- **Base chat**: backbone cho mọi segment.
+- **Deep Research / Web Search**:
+  - Dùng bởi office workers & students.
+  - Mạnh khi cần nguồn / tổng hợp đa nguồn.
+- **AI Art / Avatar**:
+  - Thu hút creators và những user tò mò.
+  - Spike khi có launch / campaign, retention nhanh giảm nếu không có editing pipeline.
+- **Voice**:
+  - WAU đáng kể, đặc biệt cho brainstorming / hands-free.
+  - Nhu cầu: tự nhiên, ít lag, có thể interrupt.
+- **Assistants / templates**:
+  - Academic writing, email, social,… phản ánh JTBD thực tế.
+
+---
+
+## 5. Pain Points & Frictions
+
+### 5.1 Activation friction
+- Onboarding xong nhưng không chat:
+  - Người dùng chưa được dẫn dắt đủ rõ ràng từ welcome → first success.
+  - Suggestion quá chung, chưa bám vào value mode.
+- Cognitive load ở màn chat đầu tiên còn khá cao (nhiều lựa chọn, chưa có “one obvious next step”).
+
+### 5.2 Gating & Guest Mode
+- Advanced features hiển thị nhưng bị khóa:
+  - Nếu copy value không rõ, dễ bị cảm giác “bait-and-switch”.
+  - Đặc biệt trên Web, nơi free-turn logic + lock có thể cắt ngang flow.
+
+### 5.3 Context & Memory
+- “Token poverty” / context ngắn:
+  - Dễ mất ngữ cảnh trong chuỗi hội thoại dài hoặc doc lớn.
+  - Productivity workflows (office / student) bị gián đoạn khi phải copy-paste lại.
+- Model-switch / chat reset:
+  - Đổi model hoặc mô thức đôi khi làm mất continuity.
+
+### 5.4 File workflows
+- Trước đây:
+  - Chủ yếu hỗ trợ PDF với giới hạn size.
+  - Chưa tốt cho docx/xlsx/code → giới hạn analyst / office workflows.
+- Chưa có:
+  - Multi-file trong một cuộc trò chuyện mượt mà.
+  - Asset reuse rõ (dùng lại file đã upload ở nơi khác).
+
+### 5.5 Research trust & controllability
+- Các phiên bản sớm:
+  - Plan hiển thị không sát cách thực tế chạy.
+  - Khó chỉnh sửa một phần nhỏ mà không rerun toàn bộ.
+- Người dùng cần:
+  - Editable sections.
+  - Versioning.
+  - Scope theo nguồn tin đáng tin.
+
+### 5.6 AI Art retention
+- Sau trial:
+  - D3 retention thấp.
+  - Nguyên nhân chính: workflow yếu (thiếu edit non-destructive, giữ style, asset library).
+
+### 5.7 “No data found”
+- Không có: data định lượng chi tiết về lý do cancel/subscription churn theo persona (từ ticket text).
+- Không có: thống kê lỗi chi tiết theo từng scenario (chỉ biết có failure/hit-limit events).
+
+---
+
+## 6. Drop-off & Activation Issues
+
+- Các điểm chính:
+  - Sau onboarding → trước message đầu tiên (activation gap).
+  - Khi user thử advanced features ở chế độ guest / free → gặp paywall/hit-limit mà không hiểu rõ giá trị.
+  - D3 feature retention thấp với AI Art / novelty features.
+- Nhóm rủi ro:
+  - Casuals và users chỉ “test thử xem sao”.
+  - Creators chỉ test AI Avatar rồi rời đi vì không thấy workflow dài hạn.
+
+---
+
+## 7. Motivations & Triggers
+
+### 7.1 Triggers ban đầu
+- Curiosity / FOMO về AI.
+- Kỳ vọng tiết kiệm thời gian cho:
+  - Homework / study.
+  - Email / work.
+  - Content cho mạng xã hội.
+- Free trial / Guest Mode / free turns:
+  - Cho phép test chất lượng mà không commit.
+
+### 7.2 Drivers ngắn hạn (first sessions)
+- Cảm giác “đã xong một việc thật”:
+  - Ví dụ: một email gửi được, một outline usable, một caption copy-paste được.
+- Wow effect (đặc biệt với AI Art, voice):
+  - Nhưng cần được nối tiếp bằng workflow edit, reuse.
+
+### 7.3 Drivers dài hạn
+- Output ổn định (chất lượng + tốc độ).
+- Khả năng xử lý:
+  - Nhiều bước.
+  - Nhiều file / nhiều nguồn.
+  - Nhiều phiên làm việc (memory).
+- Personalization:
+  - Tone, length, style.
+  - “Biết mình” hơn theo thời gian (memory & instructions).
+
+### 7.4 Data gaps
+- Thiếu: insight cảm xúc chi tiết về trust / kiểm soát / confusion ở scale lớn (do thiếu ticket/feedback pipeline tập trung).
+
+---
+
+## 8. Power Users vs Casual Users
+
+### 8.1 Power Users
+
+**Behavior**
+- Session frequency cao, quay lại nhiều lần trong tuần.
+- Dùng nhiều feature advanced:
+  - Deep Research, Web Search.
+  - Multi-file / file-analysis workflows.
+  - AI Art kèm editing, style pipeline.
+  - Voice cho brainstorming.
+- Thường là premium.
+
+**Needs**
+- Memory mạnh, bền qua nhiều phiên.
+- Multi-format file support (PDF, docx, xlsx, code,…).
+- Tooling giàu khả năng:
+  - Edit, refine, versioning, export (slides, docs,…).
+
+### 8.2 Casual Users
+
+**Behavior**
+- Vào ít, chủ yếu:
+  - Q&A đơn lẻ.
+  - Test nhanh AI Art / Avatar.
+- Rất nhạy với:
+  - Gating khó chịu.
+  - Onboarding / welcome quá dài hoặc phức tạp.
+
+**Needs**
+- First success cực kỳ rõ ràng và dễ dàng:
+  - 1–2 click là có kết quả usable.
+- Không bị overwhelm bởi tùy chọn / feature.
+
+### 8.3 Transition pathways
+- Từ casual → power:
+  - Khi user tình cờ khám phá được workflow dài hơn có giá trị:
+    - Ví dụ: từ 1 câu hỏi → “convert to research report” → “convert to slide”.
+  - Khi advanced feature được giới thiệu đúng thời điểm (contextual suggestion thay vì banner chung chung).
+
+### 8.4 Data gaps
+- Chưa có ngưỡng chính thức (sessions/week, feature events) để gắn nhãn “power user”.
+- Thiếu feedback sentiment riêng cho power users (góc nhìn: họ đang bức xúc nhất ở đâu).
+
+---
+
+## 9. Key Insights (Insight → Evidence → Implication)
+
+1. **Onboarding cao, activation vẫn còn gap**
+   - Evidence: onboarding completion rất cao, vẫn có cohort non-activated + đã có notification chuyên để “đánh thức” nhóm này.
+   - Implication: coi “welcome → first message” là funnel riêng; thiết kế lại:
+     - 3–5 suggestion gọn, bám value mode.
+     - 1–2 “one-click starter” tasks.
+
+2. **Retention của power users phụ thuộc mạnh vào memory & file workflows**
+   - Evidence: roadmap đánh dấu memory + file formats là khoảng trống “critical”, gắn với productivity use-cases.
+   - Implication:
+     - Ưu tiên ship session + long-term memory, multi-file trong 1 chat.
+     - Thiết kế rõ “giá trị workflow” để dùng làm gói upsell.
+
+3. **Research trust & controllability là chìa khóa cho students/office**
+   - Evidence: chuyển từ research plan opaque → editable sections + versioning + scoped sources; depth usage dùng copy/source-view/regenerate.
+   - Implication:
+     - Default research UI nên là “edit-in-place”.
+     - Cung cấp path 1-click ra slides/notion/summary report.
+
+4. **AI Art có trial rất mạnh nhưng D3 retention thấp vì thiếu pipeline**
+   - Evidence: spike launch, D3 thấp; người dùng test nhưng không dùng tiếp.
+   - Implication:
+     - Đầu tư nondestructive editing, style persistence, asset library.
+     - Thiết kế “creator pipelines” (prompt → edit → export) để biến “wow” thành habit.
+
+5. **Gating không rõ ràng làm xấu trải nghiệm guest/free**
+   - Evidence: advanced feature hiển thị nhưng khóa, free-turn rules phức tạp.
+   - Implication:
+     - Mỗi lần gate phải kèm:
+       - Mini-demo result.
+       - Copy giải thích “tại sao đáng nâng cấp” gắn với task hiện tại.
+
+6. **Value-mode personalization đã có data nhưng chưa tận dụng triệt để**
+   - Evidence: onboarding capture response-style / value mode nhưng chưa thể hiện rõ ràng trong toàn bộ early turns.
+   - Implication:
+     - Thêm lớp “response-style middleware”:
+       - Nếu user muốn “quick answer”, default output ngắn gọn, checklist, CTA rõ ràng.
+       - Chỉ override khi prompt yêu cầu khác.
+
+7. **Voice đang có usage đáng kể, tiềm năng cao nếu UX tốt**
+   - Evidence: WAU voice cao, đã có kế hoạch cải thiện naturalness / interruptibility.
+   - Implication:
+     - Ship nhanh voice enhance, tối ưu cho:
+       - Brainstorm nhanh.
+       - “Voice → action items / notes” pipelines.
+
+8. **Stickiness hiện ở mức trung bình; workflows compounding là đòn bẩy chính**
+   - Evidence: DAU/WAU ~0.16–0.26; depth tăng khi user dùng workflows dài (research, file, memory).
+   - Implication:
+     - Tập trung vào features tạo compounding value:
+       - Memory, file breadth, research editability.
+     - Bề mặt hóa “value recap” (“Tuần này bạn đã tiết kiệm ~X giờ”).
+
+9. **Thiếu hạ tầng feedback/ticket để hiểu sâu “tại sao người dùng bỏ đi”**
+   - Evidence: không có kho ticket tập trung, chỉ có tổng hợp high-level.
+   - Implication:
+     - Xây pipeline ingest ticket/feedback + mapping:
+       - Persona × Feature × Reason (accuracy, personalization, style, speed…).
+     - Xuất báo cáo định kỳ “Top 5 frictions”.
+
+10. **Activation là “rock” ưu tiên; đã có project cụ thể**
+    - Evidence: có project targeting uplift activation (ví dụ +8%), dashboard đã chuẩn hóa khái niệm activation.
+    - Implication:
+      - Ưu tiên cross-squad initiative xoay quanh activation:
+        - Welcome, suggestion, gating demo, value-mode personalization.
+      - Đo và public activation theo entrypoint & persona hàng tuần.
+
+---
+
+## 10. Opportunities for Product Improvement
+
+### 10.1 Activation
+- Thiết kế lại first-session:
+  - Ít lựa chọn hơn, nhưng chất hơn.
+  - Suggestions dùng ngôn ngữ bám sát JTBD từng persona.
+  - Thử “1 big button” kiểu “Help me finish X now”.
+- Tracking:
+  - Activation rate by entrypoint, persona, value mode.
+  - So sánh A/B các variant welcome & suggestions.
+
+### 10.2 Retention & Engagement
+
+**Memory-first**
+- Rollout memory (session + long-term) sớm cho:
+  - Office workers.
+  - Students.
+- Bề mặt hóa:
+  - “Continue where you left off”.
+  - “Use what we already know about you” nhưng với kiểm soát rõ.
+
+**Multi-format files**
+- Hỗ trợ docx, xlsx, code, v.v.
+- Multi-file conversations:
+  - Cross-file reasoning (compare, merge insights).
+- Trigger quick actions khi upload (summarize, extract table, check errors, etc.).
+
+**Research experience**
+- Default: editable plan, sections, trusted sources.
+- 1-click:
+  - “Turn into email/report/slides”.
+- Rõ ràng:
+  - Đang đọc nguồn nào, mức độ tin cậy ra sao.
+
+**Creator pipelines**
+- Non-destructive editing, style presets.
+- Asset libraries / project-level collections.
+- Flows:
+  - Idea → script → image(s) → caption → export pack.
+
+### 10.3 Segment‑specific
+
+- **Students**:
+  - “Study mode”: multi-file reading, flashcards, quizzes, exam prep flows.
+  - Emphasis citations & explanation depth.
+- **Office workers**:
+  - Deep integration với email/meeting: auto-draft, follow-ups, summary → tasks.
+  - Voice → notes/action items.
+- **Creators**:
+  - Campaign templates end-to-end.
+  - Asset reuse & style continuity giữa text + image.
+
+### 10.4 Measurement & Next Steps
+
+- Chuẩn hóa định nghĩa:
+  - Activation, power user, feature adoption, D3/D7 retention.
+- Dashboard:
+  - Activation by entrypoint / persona / value mode.
+  - D3/D7 retention cho Deep Research, Web Search, AI Art, voice.
+  - Segment × Feedback reason.
+- Thiết lập “Monthly Insights Review”:
+  - Top 5 frictions.
+  - Top 5 opportunities / experiments.
+
+
+
