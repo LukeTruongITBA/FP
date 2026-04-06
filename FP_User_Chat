@@ -1,0 +1,120 @@
+# USER REFERENCE DOCUMENT
+
+**Product:** Chat Smith AI
+
+---
+
+## **1. User Segments**
+
+### **1.1 Persona Segments**
+
+* **Student**
+
+  * Learning, research, summarization
+* **Office Worker**
+
+  * Productivity, document understanding, synthesis
+* **Content Creator**
+
+  * Image generation, content creation
+
+---
+
+### **1.2 Access Segments**
+
+* **Guest Users**
+
+  * Trial usage (max 4 messages/session)
+  * Basic Q&A only
+  * No data persistence
+
+* **Free Users**
+
+  * Core chat usage with limited quota
+  * Limited access to advanced features
+
+* **Premium Users**
+
+  * Full access to advanced features
+  * Higher usage limits
+
+---
+
+## **2. Core User Goals**
+
+* Get fast answers / explanations
+* Summarize and understand content (text, link, file)
+* Perform deeper research (structured output, sources)
+* Generate and refine images
+
+---
+
+## **3. Key User Behaviors**
+
+### **3.1 Entry & Activation**
+
+* Enter via landing page → start chat
+* Interact with suggested prompts
+* Send first message
+
+### **3.2 Engagement**
+
+* ~7–8 messages per user (weekly avg)
+* Core chat is main usage driver
+* Multi-modal usage exists:
+
+  * Image (vision)
+  * Voice
+
+---
+
+## **4. Feature Usage Patterns**
+
+* **Core Chat:** highest usage
+* **Vision/Image:** strong adoption
+* **Voice:** moderate usage
+* **Advanced features (Deep Research, AI Art):**
+
+  * Used by smaller but more engaged users
+  * Typically gated by quota/premium
+
+---
+
+## **5. Key Frictions (System-Driven)**
+
+* Guest limitations (quota, feature lock, no persistence)
+* Mode conflicts (file upload vs advanced modes)
+* File upload must complete before sending
+* Image upload requires consent step
+* Quota system differs across features
+
+---
+
+## **6. User Types by Behavior**
+
+* **Casual Users**
+
+  * Use basic chat
+  * Low feature exploration
+
+* **Power Users**
+
+  * Use multi-modal features (image, voice, research)
+  * Engage in iterative workflows (e.g., image editing, deep research)
+
+---
+
+## **7. Notes for Usage**
+
+* This document reflects:
+
+  * **Observed behavior (analytics)**
+  * **System constraints (product design)**
+
+* Use this as:
+
+  * Baseline for product decisions
+  * Input for PRD / experiments
+  * Context for further user research
+
+---
