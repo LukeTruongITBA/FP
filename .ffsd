@@ -1,0 +1,112 @@
+# User Analysis Report (Focused) — **Student (Persona `0`)** for **Chat Smith AI**
+
+## **1) Segment Definition: Student (Persona `0`)**
+- **Mô tả**
+  - Nhóm người dùng dùng Chat Smith AI cho **học tập** và **hoàn thành bài tập/nhiệm vụ học thuật**: giải thích khái niệm, tóm tắt, luyện tập, hỗ trợ coding/học kỹ năng.
+- **Đặc điểm chính (signals có trong tracking/spec)**
+  - Onboarding interests có nhóm phù hợp student (ví dụ: **Education, Homework, Coding, Career Development**… theo danh sách interest được định nghĩa).
+- **Use cases điển hình**
+  - **Hỏi-đáp kiến thức**: giải thích dễ hiểu, ví dụ minh họa, “explain like I’m 5”, so sánh khái niệm.
+  - **Hỗ trợ làm bài**: dàn ý, tóm tắt, luyện đề, gợi ý bước giải.
+  - **Học kỹ năng/coding**: giải thích code, gợi ý approach, sửa lỗi cơ bản (không có dữ liệu tách riêng).
+
+---
+
+## **2) User Goals & Jobs-To-Be-Done (JTBD) — Student**
+- **Bắt đầu nhanh, không cần biết “prompt chuẩn”**
+  - Giảm “không biết hỏi gì” khi vừa mở màn hình chat.
+- **Hiểu nhanh và học hiệu quả**
+  - Nhận giải thích rõ ràng, có cấu trúc, có ví dụ; có thể hỏi tiếp để làm rõ.
+- **Hoàn thành nhiệm vụ**
+  - Tạo dàn ý, tóm tắt nội dung dài, biến ý tưởng thành bài viết/bản trả lời.
+- **(Secondary) Khám phá tính năng nâng cao nếu thấy hữu ích**
+  - Multi-modal (ảnh), voice, model selection… nhưng **Không tìm thấy dữ liệu** chứng minh student dùng nhiều hơn nhóm khác.
+
+---
+
+## **3) Key User Behaviors — Student view**
+
+### **3.1 Entry points (điểm vào chat)**
+- Có nhiều placement dẫn vào chat (home shortcut/task/what’s new/deeplink/notification/model switching…).
+
+### **3.2 Hành động đầu tiên trong chat (first-message behaviors)**
+- **Tap message suggestions** để khởi động (được thiết kế như đòn bẩy activation):
+  - Với Student, nhóm phù hợp nhất theo taxonomy là `info_query` (hỏi-đáp, học tập) và đôi khi `deep_research` (tìm hiểu sâu).
+- **Tap feature suggestions** (nếu xuất hiện): đọc webpage/PDF, camera, create/edit images…
+
+### **3.4 Feature usage signals liên quan Student (tổng quan iOS, không tách persona)**
+- **Core chat usage** là lớn nhất (hành vi phổ biến).
+- **Vision usage** có adoption đáng kể (gợi ý nhu cầu học qua hình ảnh có thể có, nhưng không thể kết luận cho Student).
+- **Deep research usage** tồn tại nhưng nhỏ về quy mô so với core chat.
+- **Model selection taps** có lượng user ổn định (nhóm muốn kiểm soát chất lượng).
+
+## **6) Motivations & Triggers — Student**
+
+### **Triggers để bắt đầu**
+- Nhu cầu tức thời: *“cần hiểu nhanh / cần làm bài / cần tóm tắt để học”*.
+- Welcome + suggestions giảm nỗ lực nghĩ prompt.
+
+### **Triggers để quay lại**
+- Notification nhắm vào nhóm chưa kích hoạt (2h/24h/48h) có thể kéo user quay lại hoàn thành câu hỏi.
+- Quota reset/free messages refresh (theo cơ chế usage reset) hỗ trợ habit quay lại.
+- **Không tìm thấy dữ liệu** định lượng: trigger nào hiệu quả nhất cho Student.
+
+---
+
+## **7) Power Users vs Casual Users — Student lens**
+
+### **Casual Student**
+- Dùng chủ yếu Q&A nhanh (info_query), 1–2 follow-up rồi rời.
+- Dựa nhiều vào suggestions để bắt đầu.
+
+### **Power Student**
+- Multi-step learning: hỏi tiếp nhiều vòng, yêu cầu ví dụ/bài tập, chuyển format (outline → full answer).
+- Có thể dùng thêm:
+  - Vision (chụp bài, hình minh họa) / image workflows
+  - Model selection (muốn câu trả lời “chắc chắn hơn”)
+- Hành vi downstream mạnh: **copy output** (tổng quan hệ thống cho thấy copy là action nổi bật → phù hợp với nhu cầu “copy vào note/bài làm”).
+
+---
+
+## **8) Key Insights (Student) — _Insight → Evidence → Product Implication_**
+
+1) **Activation của Student phụ thuộc lớn vào “starter prompts” vì vấn đề blank chat đã được xác định rõ**
+- **Evidence:** spec nêu user không biết bắt đầu; baseline activation rate mobile và đang tối ưu welcome/suggestions.
+- **Product implication:** ưu tiên suggestion set “Student-first” (giải thích khái niệm, tóm tắt bài, dàn ý, bài tập mẫu), tối ưu thứ tự/visual để tăng “first message sent”.
+
+2) **Hành vi “hỏi tiếp để hiểu sâu” bị cản bởi topic suggestions UI hiện tại**
+- **Evidence:** spec chỉ ra discoverability/ergonomics/personalization yếu của topic suggestions dưới response.
+- **Product implication:** redesign chips (dễ thấy–dễ bấm–có ngữ cảnh học tập), nhằm tăng follow-up rate và session depth.
+
+3) **Copy là hành vi downstream nổi bật (tổng quan) → Student nhiều khả năng dùng để dán vào note/bài**
+- **Evidence:** metrics tổng cho thấy `copy reply` là action nổi trội.
+- **Product implication:** tối ưu formatting cho học tập: headings, bullets, steps, “key takeaways”, và copy UX ổn định.
+
+4) **Deep research tồn tại nhưng adoption nhỏ (tổng quan) → có thể chưa được “định vị đúng” cho nhu cầu học**
+- **Evidence:** deep research weekly users thấp hơn rất nhiều so với core chat.
+- **Product implication:** chỉ nên surface deep research cho student khi query mang tính “tìm hiểu sâu/so sánh/đề tài”, tránh làm nặng UI ở first chat.
+
+5) **Voice hiện có friction rõ (robotic/slow, thiếu subtitles/transcription) nên khó trở thành kênh học hiệu quả**
+- **Evidence:** feedback/spec voice nêu rõ các vấn đề.
+- **Product implication:** nếu muốn voice phục vụ student: cần subtitles/transcription realtime + cải thiện voice quality; đo adoption/retention voice theo persona (hiện thiếu).
+
+---
+
+## **9) Opportunities for Product Improvement — Student (activation, retention, engagement)**
+
+### **Activation**
+- **Student-first welcome suggestions**
+  - Bộ prompt mặc định theo nhóm: “Explain simply”, “Summarize this chapter”, “Create study plan”, “Quiz me”, “Solve step-by-step”.
+- **Giảm friction gửi message đầu**
+  - 1-tap templates trong input (không chỉ chips), để user gửi câu hỏi học tập ngay.
+
+### **Retention**
+- **Learning continuity**
+  - Củng cố memory/sync để user quay lại tiếp tục “đang học chương X / đang ôn chủ đề Y”.
+  - *Lưu ý:* memory/sync được mô tả như initiative/pain point, nhưng **Không tìm thấy dữ liệu** hiệu quả thực tế trên Student.
+
+### **Engagement**
+- **Improve follow-up guidance**
+  - Topic suggestions sau câu trả lời nên ưu tiên: “Give examples”, “Make it simpler”, “Practice questions”, “Summarize key points”.
+- **Formatting for study**
+  - Mặc định output có cấu trúc (sections + bullets + steps) để tăng copy/reuse.
