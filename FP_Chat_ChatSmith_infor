@@ -1,0 +1,184 @@
+# **Chat Smith AI là gì? (Giới thiệu chi tiết)**
+
+## **1) Tầm nhìn, sứ mệnh & định vị**
+- **Tầm nhìn (Vision)**: Đến năm 2030, Chat Smith hướng tới trở thành “**amplifier** đáng tin cậy nhất” cho **tư duy, sáng tạo và hành động** của con người—một AI companion có thể “biến ý tưởng/yêu cầu thành kết quả hoàn chỉnh”.
+- **Sứ mệnh (Mission)**: **Amplify** khả năng **think – create – act** của mọi người thông qua AI, bằng cách:
+  - Giảm ma sát trong quá trình suy nghĩ
+  - Tăng tốc hoàn thành tác vụ
+  - Nâng cao sáng tạo
+
+## **2) Chat Smith gồm những nền tảng nào?**
+- **Mobile app**: iOS, Android (các spec/metrics đề cập xuyên suốt iOS/Android).
+- **Web**: `chatsmith.io` (có cả desktop và mobile web), bao gồm **Guest Mode** cho người dùng chưa đăng nhập.
+
+---
+
+# **3) Trải nghiệm cốt lõi: “Chat” (AI chat đa năng)**
+## **3.1 Chat cơ bản (Base Chat)**
+- Chat Smith có “persona” hệ thống (system prompt) theo định hướng:
+  - **useful, friendly, fun**
+  - Giới hạn độ dài câu trả lời (ví dụ: “không quá 1000 từ” theo prompt trung tâm).
+- **Mục tiêu sản phẩm quan trọng**: tăng **New Chat activation rate** (tỷ lệ user vào Chat và **gửi được message đầu tiên**).
+
+## **3.2 Welcome & Suggestions (đòn bẩy activation)**
+- Khi màn hình chat đang “trống” (chưa có text/file, chưa vào mode tính năng, chưa gửi message đầu), Chat Smith hiển thị:
+  - **Welcome copy** (ví dụ “Where should we start?”)
+  - **Gợi ý dạng 1-tap** để người dùng bắt đầu nhanh, giảm “blank page anxiety”
+- Gợi ý được chia làm 2 nhóm:
+  - **Message suggestions** (prompt có sẵn): `info_query`, `fun_social`, `deep_research`, `create_images`, `edit_images`
+  - **Feature suggestions** (điểm vào tính năng): `create_images`, `edit_images`, `open_camera`, `read_webpage`, `read_pdf`
+- Trên mobile có nhiều biến thể A/B test; một biến thể “advanced” đang vận hành đặt thứ tự gợi ý theo hướng “feature-led”:
+  - **Image2Image → Create Image → Info query → Fun/social → Deep research**
+
+---
+
+# **4) Các năng lực nổi bật (Capabilities) trong Chat Smith**
+
+## **4.1 Multi-model chat (chọn model)**
+- Chat Smith hỗ trợ nhiều model (tracking có danh sách model_name như: `gpt-4o-mini`, `gpt-4o`, `deepseek-reasoner`, `grok-2`, `gemini-1.5-flash`, `gemini-1.5-pro`…).
+- Có logic “**Sync History**” để:
+  - Một conversation luôn hiển thị **cùng model active** trên mọi thiết bị
+  - New chat dùng **default model dự đoán được** (không ngẫu nhiên)
+  - Phân biệt rõ: **chat model** vs **advanced-feature model** (model trong feature không nhất thiết làm thay đổi model của conversation)
+
+## **4.2 Multimodal: chat với ảnh & file**
+### **Chat with image / vision**
+- Hỗ trợ gửi ảnh trong chat (đi kèm governance như giới hạn số ảnh, format, và model có hỗ trợ vision hay không).
+- Có yêu cầu về **consent** khi upload ảnh (web): hiển thị popup đồng ý một lần để đảm bảo tuân thủ.
+
+### **Chat with file (upload nhiều file để hỏi/tóm tắt)**
+- Mục tiêu: cho phép user upload **một hoặc nhiều file** để:
+  - Hỏi theo ngữ cảnh tài liệu
+  - Tóm tắt / trích key points
+  - Hiểu tài liệu mà không cần đọc end-to-end
+- Hành vi chính theo spec:
+  - Entry từ menu **“+”** (nhóm Function)
+  - Cho phép **multi-file** (tối đa **10 file/lần**, **20MB/file** theo spec Chat with file)
+  - Hiển thị trạng thái attachment: `Uploading` / `Done` / `Failed`
+  - User **được phép gõ prompt khi đang upload**, nhưng **không được Send** cho tới khi upload xong
+  - Có **preview** file sau khi `Done`
+  - Nếu đang attach file mà user chuyển sang advanced mode (Deep research/Web search/Create image) → cảnh báo “clear files to switch?”
+
+> Lưu ý: Một số tài liệu khác mô tả “Chat with PDF” với ràng buộc/logic riêng (Assistant API) và có đề cập giới hạn PDF **10MB** (configurable). Trong khi doc “Chat with file” dùng 20MB/file. Đây là **khác nhau giữa các phạm vi/spec** (PDF chat riêng vs upload file trong chat).
+
+## **4.3 Deep Research (nghiên cứu chuyên sâu)**
+- Mục tiêu:
+  - Tạo báo cáo có cấu trúc, có **citations/sources**
+  - Tự động hoá quy trình nghiên cứu nhiều bước, có **progress** và có thể mất **2–5 phút**
+- Flow UX (tóm lược):
+  - User bật mode **Deep research**
+  - Hệ thống có thể **validate** câu hỏi (nếu chưa rõ → hỏi thêm)
+  - Trong lúc chạy:
+    - Hiển thị tiến trình (các bước research)
+    - Có **stop button**
+    - Có thể xin quyền notification để báo “research done”
+  - Kết quả trả về hỗ trợ nhiều định dạng hiển thị (markdown/text/… theo spec mobile)
+- Gating/quota:
+  - Tài liệu “Deep research V1 (web)” đặt precondition: user login và có quota; hướng premium-only trong bản V1.
+  - Tài liệu usage-limit có mô tả quota deep research (ví dụ giới hạn theo tháng/tuần tuỳ platform/config).
+
+## **4.4 Web Search / Chat with webpage / link (theo spec tổng hợp)**
+- Có các mode/feature như:
+  - **Web search**
+  - **Read webpage**
+  - (Một số flow “chat with web link” được ghi nhận là “Removed” trong tài liệu prompt, nhưng vẫn xuất hiện trong menu/feature list ở tài liệu khác → thể hiện có thay đổi scope theo thời điểm.)
+
+## **4.5 Voice (giọng nói)**
+### **Voice Enhance**
+- Mục tiêu:
+  - Cải thiện chất lượng voice input/output
+  - Tăng retention cho voice usage
+- Các vấn đề được nêu rõ:
+  - Một số voice (ví dụ Draco iOS) “noisy/unclear/bot-like”
+  - **Không có subtitles** khi bot nói → khó theo dõi nội dung dài
+  - Đổi ngôn ngữ input phải vào sâu settings → “break flow”
+- Giải pháp chính:
+  - Chuẩn hoá mapping voice theo Google TTS (loại Apple voices), quy tắc free/premium
+  - Thêm entrypoint đổi voice/language ngay trên màn voice (giảm friction)
+
+### **Hands-free voice + Subtitles (CC)**
+- Trong mode hands-free:
+  - Có nút **CC** bật/tắt phụ đề (mặc định ON)
+  - Subtitle scroll được, hiển thị theo block cho từng câu trả lời bot
+  - Có logic khi user interrupt/stop → hiện full message của đoạn đang nói
+
+---
+
+# **5) Personalization: Style & Memory**
+## **5.1 Chat response custom (tùy biến phong cách trả lời)**
+- Cho phép chọn style/personality (ví dụ: Default, Cynic, Listener, Concise, Nerd, Formal…)
+- Áp dụng cho text-to-text (qua Smith Nexus), có tracking và RC toggle.
+
+## **5.2 Memory (Session-based + Long-term)**
+- Vấn đề người dùng gặp:
+  - Phải lặp lại role/goals mỗi chat mới
+  - Không giữ được bối cảnh công việc đang làm
+  - Output thiếu nhất quán, personalization yếu, cognitive load cao
+- Giải pháp thiết kế:
+  - **Session-based history**: tóm tắt cuộc hội thoại dài theo “global summary + topics + recent turns” để tránh rơi khỏi token window
+  - **Long-term memory**: lưu “memory facts” dạng câu ngắn, có block:
+    - `user_profile`, `capability`, `preference`, `activities`, `top_of_mind`, `behavior_pattern`
+  - User có quyền:
+    - Toggle **Reference saved memory** (dùng/không dùng memory khi trả lời)
+    - Toggle **Reference chat history**
+    - **Manage & delete** memories
+
+---
+
+# **6) Sync History (đồng bộ lịch sử & trải nghiệm đa thiết bị)**
+- Mục tiêu: conversation & model selection **nhất quán** trên iOS/Android/Web
+- Nguyên tắc:
+  - Sync **content** (messages), không sync trạng thái UI tạm (ví dụ đang ở mode upload trên device A)
+  - Model của conversation lấy theo **conversation.model_id** và **last_used_model_id** (cấp user)
+  - Advanced feature model không nhất thiết thay conversation model (conversation model ưu tiên theo “normal chat”)
+
+---
+
+# **7) Quota / Entitlement / Free vs Premium**
+## **7.1 Quota hiện diện trong nhiều feature**
+- Có doc mô tả “Chat usage limit & model” theo feature, ví dụ:
+  - Chat free: iOS 7 messages, Android 10 messages (theo doc đó)
+  - Web search: free có 1 request (mobile), web free 0 request (theo doc đó)
+  - Deep research: free 0 request; premium có quota theo chu kỳ
+  - PDF: free 0 request, premium “no limit” (theo doc đó)
+- Đồng thời, tài liệu entitlement nêu mục tiêu: xây hệ **Entitlement Service** làm “source of truth” cho:
+  - Plan, limits, features allowed, quota/rate-limit
+  - Áp dụng cross-device; chỉ trừ guest non-login theo logic riêng
+
+## **7.2 Usage reset mechanism**
+- Mục tiêu: free user được “refresh free messages” theo chu kỳ để:
+  - Tăng Aha moment
+  - Tăng D1–D7 retention
+  - Tạo habit quay lại
+
+---
+
+# **8) Web Guest Mode (dùng thử không cần đăng nhập)**
+- Trên `chatsmith.io`, guest có thể trải nghiệm chat **cơ bản** trước khi tạo account:
+  - **Quota: 4 chat requests/guest**
+  - Chỉ basic Q&A (không advanced features)
+  - Không hiển thị history hội thoại; FE lưu tạm local để gửi context khi gọi LLM
+  - Chỉ được dùng **GPT‑4o‑mini**, model khác hiển thị nhưng bị lock và dùng như upsell → click sẽ dẫn tới `/login`
+  - Nhiều CTA (assistants/tasks/advanced features/what’s new/Pro/…) sẽ redirect login
+
+---
+
+# **9) Analytics & Measurement (tập trung vào Chat)**
+- Hệ thống tracking có các event trọng yếu cho funnel chat như:
+  - `chat_screen_viewed`
+  - `chat_message_suggestion_tap`, `chat_feature_suggestion_tap`
+  - `chat_usage`, `chat_file_usage`, `voice_usage`, `deep_research_usage`, `web_search_usage`…
+  - Các action trên bot reply: copy/voice/regen/model compare… (tuỳ feature set)
+- North-star thường được nhắc tới trong docs Chat: **New Chat activation rate**.
+
+---
+
+# **10) Monetization (nguồn thu đã xác nhận trong tài liệu nội bộ bạn cung cấp trước đó)**
+- **Subscription (auto-renewable)** trên **iOS & Android**
+- **Web subscription** qua **Paddle Checkout**
+- **In-app purchases (IAP)** trên **Google Play**
+- Các nguồn khác như **Ads revenue** hoặc **credit packs**: ở mức kế hoạch → **chưa xác nhận** là revenue hiện tại.
+
+
+
+12. https://vulcanlabs.atlassian.net/wiki/spaces/CS/pages/1428291618/Long-term+memory
