@@ -42,8 +42,6 @@
 - User vào chat qua `chat_screen_viewed` với nhiều `placement` như:
   - từ home shortcut / new features / tasks / what’s new / deeplink / notification / model switching…
 
-> **Không tìm thấy dữ liệu**: breakdown `placement` theo persona `1`.
-
 ### **3.2 Hành động đầu tiên trong chat (first chat moment)**
 - **Welcome & suggestions** được thiết kế như “activation lever” để kéo user từ “xem” → “gửi message đầu”.
 - User có thể tap:
@@ -53,78 +51,9 @@
   - **Deep research** (structured research)
   - **Read PDF / Read webpage** (nhập nguồn thông tin để tóm tắt/QA)
 
-### **3.3 Session & engagement patterns (topline)**
-- Toàn sản phẩm có dấu hiệu **giảm engagement theo tuần** trong report (messages/user giảm nhẹ; chat DAU/WAU giảm trong giai đoạn report).
-  - iOS messages/user: **7.6 → 7.3**
-  - Android messages/user: **8.2 → 7.5**
-- Adoption feature (iOS, theo cửa sổ 2025-12-09 → 2026-03-08, mức weekly users):
-  - `chat_usage`: khoảng **~95k–112k users/tuần**
-  - `select_model_tap`: khoảng **~9k–10.5k users/tuần**
-  - `web_search_usage`: khoảng **~140–485 users/tuần** (nhỏ)
-  - `deep_research_usage`: khoảng **~274–683 users/tuần** (nhỏ nhưng tồn tại)
-
-> Lưu ý: Các số trên là **tổng iOS**, không tách Office worker. **Không tìm thấy dữ liệu** adoption theo persona.
-
 ### **3.4 Hành vi “output reuse” mạnh (rất phù hợp office workflow)**
-- Trong metrics iOS, hành vi **copy bot reply** là action downstream nổi bật:
-  - `bot_reply_copy_tap`: khoảng **~16k–19k users/tuần**
+- Trong metrics iOS, hành vi **copy bot reply** là action downstream nổi bật: `bot_reply_copy_tap`
 - Đây là hành vi rất “office-like”: lấy output để dán vào email/docs/chat nội bộ.
-
----
-
-## **4) Pain Points & Frictions — Office worker (ưu tiên theo bằng chứng trong docs)**
-
-### **P0 — Mất context & lặp lại thông tin giữa các lần chat**
-- **Signal trong docs (Memory pain points)**
-  - User phải lặp lại **role/goals/background** ở chat mới.
-  - Không nhớ ongoing work → đứt workflow.
-  - Tăng cognitive load → không phù hợp môi trường công việc (ngắt quãng liên tục).
-- **Hệ quả cho office worker**
-  - Giảm “time-to-value” khi vào chat để làm việc nhanh.
-  - Tăng cảm giác “AI không hiểu mình”, giảm stickiness.
-
-### **P0 — Long-running tasks gây kẹt, cần “Stop” + trạng thái rõ**
-- **Signal trong docs**
-  - Khi long task đang chạy, user có thể bị **blocked** trong conversation.
-  - “Stop API” và status sync được coi là quan trọng để tránh frustration.
-- **Hệ quả**
-  - Office worker thường làm việc theo slot thời gian ngắn → dễ abandon nếu không kiểm soát được.
-
-### **P1 — Feature discovery và “continue chatting” còn ma sát**
-- **Signal trong docs**
-  - UI topic suggestions dưới response: low discoverability, chip nhỏ khó tap, horizontal swipe “ẩn”.
-- **Hệ quả**
-  - Giảm session depth / follow-up usage → giảm messages/user (đúng pain mà spec nhắm tới).
-
-### **P1 — Quota/entitlement chưa unified cross-platform ở phase đầu**
-- **Signal trong docs**
-  - Sync History phase đầu có note: usage web/iOS/Android **chưa unified**; entitlement integration là phase sau.
-- **Hệ quả**
-  - Với office worker dùng đa thiết bị, experience usage/limit có thể không “nhất quán” theo kỳ vọng.
-
-### **P1/P2 — Bugs/UX regressions làm đứt flow (không riêng office worker nhưng ảnh hưởng mạnh workflow)**
-- Ví dụ trong Jira: onboarding hiển thị lại, deeplink chat fail, What’s New popup đè model selection, upload validation thiếu…
-
-> **Không tìm thấy dữ liệu**: support tickets định lượng/quotes theo “office worker”.
-
----
-
-## **5) Drop-off & Activation Issues — góc nhìn Office worker**
-
-### **Drop-off 1: Enter chat → không gửi message đầu**
-- **Signal có trong tài liệu**
-  - New chat activation rate baseline (mobile): **iOS 66%**, **Android 77%**.
-  - “Non-activated new user” được định nghĩa rõ: mở app nhưng **không tap send message trong 48h** → trigger notification theo mốc **2h / 24h / 48h**.
-- **Liên quan office worker**
-  - Office worker vào để “làm việc nhanh”; nếu empty state không hướng dẫn đủ rõ → dễ thoát.
-
-### **Drop-off 2: Sau phiên đầu → engagement giảm**
-- **Signal**
-  - Messages/user giảm nhẹ theo weekly report.
-  - Continue chatting rate được spec coi là mục tiêu tăng.
-- **Điểm nghẽn gợi ý trong docs**
-  - Topic suggestions UI + follow-up guidance chưa đủ rõ ràng/ergonomic.
-
 ---
 
 ## **6) Motivations & Triggers — Office worker**
@@ -198,15 +127,4 @@
 - **Reliability / control**
   - Stop response + trạng thái rõ ràng.
   - Compare models (đặc biệt cho câu hỏi mang tính quyết định) để tăng confidence.
-
----
-
-## **10) Data Gaps (chỉ ghi theo những gì tài liệu hiện có)**
-- **Không tìm thấy dữ liệu** adoption/retention/activation **riêng persona `1` (Office worker)**.
-- **Không tìm thấy dữ liệu** voice/deep research success rate theo persona.
-- **Không tìm thấy dữ liệu** support tickets/CS logs được gắn tag “office worker” hoặc “work use cases”.
-
-Nếu bạn muốn, mình có thể **chuẩn hoá một “Office worker funnel” theo event tracking hiện có** (onboarding_persona=1 → chat_screen_viewed → suggestion tap → first send → copy/regenerate → D7 return), hoặc **đề xuất bộ prompt suggestions “For Work”** bám đúng Task Library hiện tại để đưa vào welcome screen.
-
-Sources:
 
